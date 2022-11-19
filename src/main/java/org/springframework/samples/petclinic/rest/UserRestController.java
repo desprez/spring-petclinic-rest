@@ -41,9 +41,9 @@ public class UserRestController {
     @Autowired
     private UserService userService;
 
-    @PreAuthorize( "hasRole(@roles.ADMIN)" )
+    @PreAuthorize("hasRole(@roles.ADMIN)")
     @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<User> addOwner(@RequestBody @Valid User user,  BindingResult bindingResult) throws Exception {
+    public ResponseEntity<User> addOwner(@RequestBody @Valid User user, BindingResult bindingResult) throws Exception {
         BindingErrorsResponse errors = new BindingErrorsResponse();
         HttpHeaders headers = new HttpHeaders();
         if (bindingResult.hasErrors() || (user == null)) {

@@ -26,7 +26,7 @@ import org.springframework.samples.petclinic.model.Specialty;
 
 @Profile("spring-data-jpa")
 public interface SpecialtyRepositoryOverride {
-	
-	public void delete(Specialty specialty);
+
+    public void delete(Specialty specialty);
 
 }

@@ -47,10 +47,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Vet extends Person {
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"),
-        inverseJoinColumns = @JoinColumn(name = "specialty_id"))
+    @JoinTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"), inverseJoinColumns = @JoinColumn(name = "specialty_id"))
     private Set<Specialty> specialties;
-    
+
     @JsonIgnore
     protected Set<Specialty> getSpecialtiesInternal() {
         if (this.specialties == null) {
@@ -69,6 +68,7 @@ public class Vet extends Person {
         PropertyComparator.sort(sortedSpecs, new MutableSortDefinition("name", true, true));
         return Collections.unmodifiableList(sortedSpecs);
     }
+
     @JsonIgnore
     public int getNrOfSpecialties() {
         return getSpecialtiesInternal().size();
@@ -77,7 +77,7 @@ public class Vet extends Person {
     public void addSpecialty(Specialty specialty) {
         getSpecialtiesInternal().add(specialty);
     }
-    
+
     public void clearSpecialties() {
         getSpecialtiesInternal().clear();
     }

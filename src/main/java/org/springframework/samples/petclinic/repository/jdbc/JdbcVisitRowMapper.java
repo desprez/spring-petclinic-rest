@@ -15,7 +15,6 @@
  */
 package org.springframework.samples.petclinic.repository.jdbc;
 
-
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.samples.petclinic.model.Visit;
 
@@ -24,8 +23,7 @@ import java.sql.SQLException;
 import java.util.Date;
 
 /**
- * {@link RowMapper} implementation mapping data from a {@link ResultSet} to the corresponding properties
- * of the {@link Visit} class.
+ * {@link RowMapper} implementation mapping data from a {@link ResultSet} to the corresponding properties of the {@link Visit} class.
  */
 class JdbcVisitRowMapper implements RowMapper<Visit> {
 

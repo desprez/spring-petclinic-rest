@@ -24,8 +24,9 @@ import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 
 /**
- * Repository class for <code>Pet</code> domain objects All method names are compliant with Spring Data naming
- * conventions so this interface can easily be extended for Spring Data See here: http://static.springsource.org/spring-data/jpa/docs/current/reference/html/jpa.repositories.html#jpa.query-methods.query-creation
+ * Repository class for <code>Pet</code> domain objects All method names are compliant with Spring Data naming conventions so this interface can easily be
+ * extended for Spring Data See here:
+ * http://static.springsource.org/spring-data/jpa/docs/current/reference/html/jpa.repositories.html#jpa.query-methods.query-creation
  *
  * @author Ken Krebs
  * @author Juergen Hoeller
@@ -45,34 +46,37 @@ public interface PetRepository {
     /**
      * Retrieve a <code>Pet</code> from the data store by id.
      *
-     * @param id the id to search for
+     * @param id
+     *            the id to search for
      * @return the <code>Pet</code> if found
-     * @throws org.springframework.dao.DataRetrievalFailureException if not found
+     * @throws org.springframework.dao.DataRetrievalFailureException
+     *             if not found
      */
     Pet findById(int id) throws DataAccessException;
 
     /**
      * Save a <code>Pet</code> to the data store, either inserting or updating it.
      *
-     * @param pet the <code>Pet</code> to save
+     * @param pet
+     *            the <code>Pet</code> to save
      * @see BaseEntity#isNew
      */
     void save(Pet pet) throws DataAccessException;
-    
+
     /**
-     * Retrieve <code>Pet</code>s from the data store, returning all owners 
+     * Retrieve <code>Pet</code>s from the data store, returning all owners
      *
-     * @return a <code>Collection</code> of <code>Pet</code>s (or an empty <code>Collection</code> if none
-     * found)
+     * @return a <code>Collection</code> of <code>Pet</code>s (or an empty <code>Collection</code> if none found)
      */
-	Collection<Pet> findAll() throws DataAccessException;
+    Collection<Pet> findAll() throws DataAccessException;
 
     /**
      * Delete an <code>Pet</code> to the data store by <code>Pet</code>.
      *
-     * @param pet the <code>Pet</code> to delete
+     * @param pet
+     *            the <code>Pet</code> to delete
      * 
      */
-	void delete(Pet pet) throws DataAccessException;
+    void delete(Pet pet) throws DataAccessException;
 
 }

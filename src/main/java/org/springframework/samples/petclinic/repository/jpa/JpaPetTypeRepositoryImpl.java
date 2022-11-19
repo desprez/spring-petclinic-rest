@@ -39,48 +39,48 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Profile("jpa")
 public class JpaPetTypeRepositoryImpl implements PetTypeRepository {
-	
+
     @PersistenceContext
     private EntityManager em;
 
-	@Override
-	public PetType findById(int id) {
-		return this.em.find(PetType.class, id);
-	}
+    @Override
+    public PetType findById(int id) {
+        return this.em.find(PetType.class, id);
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public Collection<PetType> findAll() throws DataAccessException {
-		return this.em.createQuery("SELECT ptype FROM PetType ptype").getResultList();
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public Collection<PetType> findAll() throws DataAccessException {
+        return this.em.createQuery("SELECT ptype FROM PetType ptype").getResultList();
+    }
 
-	@Override
-	public void save(PetType petType) throws DataAccessException {
-		if (petType.getId() == null) {
+    @Override
+    public void save(PetType petType) throws DataAccessException {
+        if (petType.getId() == null) {
             this.em.persist(petType);
         } else {
             this.em.merge(petType);
         }
 
-	}
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public void delete(PetType petType) throws DataAccessException {
-		this.em.remove(this.em.contains(petType) ? petType : this.em.merge(petType));
-		String petTypeId = petType.getId().toString();
-		
-		List<Pet> pets = new ArrayList<Pet>();
-		pets = this.em.createQuery("SELECT pet FROM Pet pet WHERE type_id=" + petTypeId).getResultList();
-		for (Pet pet : pets){
-			List<Visit> visits = new ArrayList<Visit>();
-			visits = pet.getVisits();
-			for (Visit visit : visits){
-				this.em.createQuery("DELETE FROM Visit visit WHERE id=" + visit.getId().toString()).executeUpdate();
-			}
-			this.em.createQuery("DELETE FROM Pet pet WHERE id=" + pet.getId().toString()).executeUpdate();
-		}
-		this.em.createQuery("DELETE FROM PetType pettype WHERE id=" + petTypeId).executeUpdate();
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public void delete(PetType petType) throws DataAccessException {
+        this.em.remove(this.em.contains(petType) ? petType : this.em.merge(petType));
+        String petTypeId = petType.getId().toString();
+
+        List<Pet> pets = new ArrayList<Pet>();
+        pets = this.em.createQuery("SELECT pet FROM Pet pet WHERE type_id=" + petTypeId).getResultList();
+        for (Pet pet : pets) {
+            List<Visit> visits = new ArrayList<Visit>();
+            visits = pet.getVisits();
+            for (Visit visit : visits) {
+                this.em.createQuery("DELETE FROM Visit visit WHERE id=" + visit.getId().toString()).executeUpdate();
+            }
+            this.em.createQuery("DELETE FROM Pet pet WHERE id=" + pet.getId().toString()).executeUpdate();
+        }
+        this.em.createQuery("DELETE FROM PetType pettype WHERE id=" + petTypeId).executeUpdate();
+    }
 
 }

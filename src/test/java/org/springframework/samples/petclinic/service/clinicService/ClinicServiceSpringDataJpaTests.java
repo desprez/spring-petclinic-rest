@@ -6,10 +6,12 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * <p> Integration test using the 'Spring Data' profile.
+ * <p>
+ * Integration test using the 'Spring Data' profile.
  *
  * @author Michael Isvy
- * @see AbstractClinicServiceTests AbstractClinicServiceTests for more details. </p>
+ * @see AbstractClinicServiceTests AbstractClinicServiceTests for more details.
+ *      </p>
  */
 
 @SpringBootTest

@@ -51,7 +51,7 @@ public class Visit extends BaseEntity {
     @Column(name = "visit_date")
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy/MM/dd")
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy/MM/dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
     private Date date;
 
     /**
@@ -68,14 +68,12 @@ public class Visit extends BaseEntity {
     @JoinColumn(name = "pet_id")
     private Pet pet;
 
-
     /**
      * Creates a new instance of Visit for the current date
      */
     public Visit() {
         this.date = new Date();
     }
-
 
     /**
      * Getter for property date.
@@ -89,7 +87,8 @@ public class Visit extends BaseEntity {
     /**
      * Setter for property date.
      *
-     * @param date New value of property date.
+     * @param date
+     *            New value of property date.
      */
     public void setDate(Date date) {
         this.date = date;
@@ -107,7 +106,8 @@ public class Visit extends BaseEntity {
     /**
      * Setter for property description.
      *
-     * @param description New value of property description.
+     * @param description
+     *            New value of property description.
      */
     public void setDescription(String description) {
         this.description = description;
@@ -125,7 +125,8 @@ public class Visit extends BaseEntity {
     /**
      * Setter for property pet.
      *
-     * @param pet New value of property pet.
+     * @param pet
+     *            New value of property pet.
      */
     public void setPet(Pet pet) {
         this.pet = pet;

@@ -39,27 +39,25 @@ public class UserRestControllerTests {
 
     @Before
     public void initVets() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(userRestController)
-            .setControllerAdvice(new ExceptionControllerAdvice()).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(userRestController).setControllerAdvice(new ExceptionControllerAdvice()).build();
     }
 
     @Test
-    @WithMockUser(roles="ADMIN")
+    @WithMockUser(roles = "ADMIN")
     public void testCreateUserSuccess() throws Exception {
         User user = new User();
         user.setUsername("username");
         user.setPassword("password");
         user.setEnabled(true);
-        user.addRole( "OWNER_ADMIN" );
+        user.addRole("OWNER_ADMIN");
         ObjectMapper mapper = new ObjectMapper();
         String newVetAsJSON = mapper.writeValueAsString(user);
-        this.mockMvc.perform(post("/api/users/")
-            .content(newVetAsJSON).accept(MediaType.APPLICATION_JSON_VALUE).contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(status().isCreated());
+        this.mockMvc.perform(post("/api/users/").content(newVetAsJSON).accept(MediaType.APPLICATION_JSON_VALUE).contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isCreated());
     }
 
     @Test
-    @WithMockUser(roles="ADMIN")
+    @WithMockUser(roles = "ADMIN")
     public void testCreateUserError() throws Exception {
         User user = new User();
         user.setUsername("username");
@@ -67,8 +65,7 @@ public class UserRestControllerTests {
         user.setEnabled(true);
         ObjectMapper mapper = new ObjectMapper();
         String newVetAsJSON = mapper.writeValueAsString(user);
-        this.mockMvc.perform(post("/api/users/")
-            .content(newVetAsJSON).accept(MediaType.APPLICATION_JSON_VALUE).contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(status().isBadRequest());
+        this.mockMvc.perform(post("/api/users/").content(newVetAsJSON).accept(MediaType.APPLICATION_JSON_VALUE).contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isBadRequest());
     }
 }

@@ -44,13 +44,10 @@ public class JpaOwnerRepositoryImpl implements OwnerRepository {
     @PersistenceContext
     private EntityManager em;
 
-
     /**
-     * Important: in the current version of this method, we load Owners with all their Pets and Visits while
-     * we do not need Visits at all and we only need one property from the Pet objects (the 'name' property).
-     * There are some ways to improve it such as:
-     * - creating a Ligtweight class (example here: https://community.jboss.org/wiki/LightweightClass)
-     * - Turning on lazy-loading and using {@link OpenSessionInViewFilter}
+     * Important: in the current version of this method, we load Owners with all their Pets and Visits while we do not need Visits at all and we only need one
+     * property from the Pet objects (the 'name' property). There are some ways to improve it such as: - creating a Ligtweight class (example here:
+     * https://community.jboss.org/wiki/LightweightClass) - Turning on lazy-loading and using {@link OpenSessionInViewFilter}
      */
     @SuppressWarnings("unchecked")
     public Collection<Owner> findByLastName(String lastName) {
@@ -70,7 +67,6 @@ public class JpaOwnerRepositoryImpl implements OwnerRepository {
         return (Owner) query.getSingleResult();
     }
 
-
     @Override
     public void save(Owner owner) {
         if (owner.getId() == null) {
@@ -80,17 +76,17 @@ public class JpaOwnerRepositoryImpl implements OwnerRepository {
         }
 
     }
-    
-	@SuppressWarnings("unchecked")
-	@Override
-	public Collection<Owner> findAll() throws DataAccessException {
-		Query query = this.em.createQuery("SELECT owner FROM Owner owner");
-        return query.getResultList();
-	}
 
-	@Override
-	public void delete(Owner owner) throws DataAccessException {
-		this.em.remove(this.em.contains(owner) ? owner : this.em.merge(owner));
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public Collection<Owner> findAll() throws DataAccessException {
+        Query query = this.em.createQuery("SELECT owner FROM Owner owner");
+        return query.getResultList();
+    }
+
+    @Override
+    public void delete(Owner owner) throws DataAccessException {
+        this.em.remove(this.em.contains(owner) ? owner : this.em.merge(owner));
+    }
 
 }

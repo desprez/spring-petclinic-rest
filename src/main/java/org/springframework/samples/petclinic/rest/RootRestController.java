@@ -34,10 +34,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class RootRestController {
 
-	@RequestMapping(value = "/")
-	public void redirectToSwagger(HttpServletResponse response) throws IOException {
-		response.sendRedirect("/petclinic/swagger-ui.html");
-	}
+    @RequestMapping(value = "/")
+    public void redirectToSwagger(HttpServletResponse response) throws IOException {
+        response.sendRedirect("/petclinic/swagger-ui.html");
+    }
 
 }
-

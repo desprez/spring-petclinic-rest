@@ -20,10 +20,8 @@ import javax.persistence.MappedSuperclass;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-
 /**
- * Simple JavaBean domain object adds a name property to <code>BaseEntity</code>. Used as a base class for objects
- * needing these properties.
+ * Simple JavaBean domain object adds a name property to <code>BaseEntity</code>. Used as a base class for objects needing these properties.
  *
  * @author Ken Krebs
  * @author Juergen Hoeller

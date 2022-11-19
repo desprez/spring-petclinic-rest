@@ -50,8 +50,8 @@ public class JdbcUserRepositoryImpl implements UserRepository {
 
         Map<String, Object> params = new HashMap<>();
         params.put("username", username);
-        return this.namedParameterJdbcTemplate.queryForObject("SELECT * FROM users WHERE username=:username",
-            params, BeanPropertyRowMapper.newInstance(User.class));
+        return this.namedParameterJdbcTemplate.queryForObject("SELECT * FROM users WHERE username=:username", params,
+                BeanPropertyRowMapper.newInstance(User.class));
     }
 
     private void updateUserRoles(User user) {

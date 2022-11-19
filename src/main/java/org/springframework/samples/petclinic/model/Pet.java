@@ -72,7 +72,6 @@ public class Pet extends NamedEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
     private Set<Visit> visits;
 
-
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
@@ -96,6 +95,7 @@ public class Pet extends NamedEntity {
     public void setOwner(Owner owner) {
         this.owner = owner;
     }
+
     @JsonIgnore
     protected Set<Visit> getVisitsInternal() {
         if (this.visits == null) {

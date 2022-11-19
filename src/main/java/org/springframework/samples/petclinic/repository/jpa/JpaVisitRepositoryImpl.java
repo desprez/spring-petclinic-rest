@@ -31,7 +31,8 @@ import org.springframework.stereotype.Repository;
 /**
  * JPA implementation of the ClinicService interface using EntityManager.
  * <p/>
- * <p>The mappings are defined in "orm.xml" located in the META-INF directory.
+ * <p>
+ * The mappings are defined in "orm.xml" located in the META-INF directory.
  *
  * @author Mike Keith
  * @author Rod Johnson
@@ -46,7 +47,6 @@ public class JpaVisitRepositoryImpl implements VisitRepository {
     @PersistenceContext
     private EntityManager em;
 
-
     @Override
     public void save(Visit visit) {
         if (visit.getId() == null) {
@@ -56,7 +56,6 @@ public class JpaVisitRepositoryImpl implements VisitRepository {
         }
     }
 
-
     @Override
     @SuppressWarnings("unchecked")
     public List<Visit> findByPetId(Integer petId) {
@@ -64,25 +63,25 @@ public class JpaVisitRepositoryImpl implements VisitRepository {
         query.setParameter("id", petId);
         return query.getResultList();
     }
-    
-	@Override
-	public Visit findById(int id) throws DataAccessException {
-		return this.em.find(Visit.class, id);
-	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public Collection<Visit> findAll() throws DataAccessException {
+    @Override
+    public Visit findById(int id) throws DataAccessException {
+        return this.em.find(Visit.class, id);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public Collection<Visit> findAll() throws DataAccessException {
         return this.em.createQuery("SELECT v FROM Visit v").getResultList();
-	}
+    }
 
-	@Override
-	public void delete(Visit visit) throws DataAccessException {
-		String visitId = visit.getId().toString();
-		this.em.createQuery("DELETE FROM Visit visit WHERE id=" + visitId).executeUpdate();
-		if (em.contains(visit)) {
-			em.remove(visit);
-		}
-	}
+    @Override
+    public void delete(Visit visit) throws DataAccessException {
+        String visitId = visit.getId().toString();
+        this.em.createQuery("DELETE FROM Visit visit WHERE id=" + visitId).executeUpdate();
+        if (em.contains(visit)) {
+            em.remove(visit);
+        }
+    }
 
 }

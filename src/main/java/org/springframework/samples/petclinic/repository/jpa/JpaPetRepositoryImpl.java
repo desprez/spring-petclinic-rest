@@ -63,22 +63,22 @@ public class JpaPetRepositoryImpl implements PetRepository {
             this.em.merge(pet);
         }
     }
-    
-	@SuppressWarnings("unchecked")
-	@Override
-	public Collection<Pet> findAll() throws DataAccessException {
-		return this.em.createQuery("SELECT pet FROM Pet pet").getResultList();
-	}
 
-	@Override
-	public void delete(Pet pet) throws DataAccessException {
-		//this.em.remove(this.em.contains(pet) ? pet : this.em.merge(pet));
-		String petId = pet.getId().toString();
-		this.em.createQuery("DELETE FROM Visit visit WHERE pet_id=" + petId).executeUpdate();
-		this.em.createQuery("DELETE FROM Pet pet WHERE id=" + petId).executeUpdate();
-		if (em.contains(pet)) {
-			em.remove(pet);
-		}
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public Collection<Pet> findAll() throws DataAccessException {
+        return this.em.createQuery("SELECT pet FROM Pet pet").getResultList();
+    }
+
+    @Override
+    public void delete(Pet pet) throws DataAccessException {
+        // this.em.remove(this.em.contains(pet) ? pet : this.em.merge(pet));
+        String petId = pet.getId().toString();
+        this.em.createQuery("DELETE FROM Visit visit WHERE pet_id=" + petId).executeUpdate();
+        this.em.createQuery("DELETE FROM Pet pet WHERE id=" + petId).executeUpdate();
+        if (em.contains(pet)) {
+            em.remove(pet);
+        }
+    }
 
 }

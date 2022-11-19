@@ -30,15 +30,14 @@ import org.springframework.samples.petclinic.model.Visit;
 
 @Profile("spring-data-jpa")
 public class SpringDataVisitRepositoryImpl implements VisitRepositoryOverride {
-	
-	@PersistenceContext
+
+    @PersistenceContext
     private EntityManager em;
 
-	@Override
-	public void delete(Visit visit) throws DataAccessException {
-		String visitId = visit.getId().toString();
-		this.em.createQuery("DELETE FROM Visit visit WHERE id=" + visitId).executeUpdate();
-	}
-
+    @Override
+    public void delete(Visit visit) throws DataAccessException {
+        String visitId = visit.getId().toString();
+        this.em.createQuery("DELETE FROM Visit visit WHERE id=" + visitId).executeUpdate();
+    }
 
 }
